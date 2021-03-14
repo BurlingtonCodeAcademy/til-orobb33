@@ -1,4 +1,4 @@
-import "./App.css";
+//imports for diff components
 import NavBar from "./components/NavBar";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
@@ -6,8 +6,9 @@ import View from "./components/View";
 import Edit from "./components/Edit";
 import SinglePost from "./components/SinglePost";
 
+
 function App() {
-  console.log(Date.now());
+//routes to pages and navbar 
   return (
     <div>
       {/* <h1 id="header"> TIL: </h1> */}

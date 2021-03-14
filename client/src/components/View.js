@@ -18,14 +18,6 @@ export default function View() {
     }
   });
 
-  //   let entryArray = [];
-  //   // results &&
-  //   results.forEach((obj) => {
-  //     console.log(obj);
-  //     entryArray.push(obj.text);
-  //   });
-  // console.log(entryArray)
-
   console.log(results);
   return (
     <div>
