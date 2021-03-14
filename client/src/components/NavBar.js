@@ -5,8 +5,8 @@ export default function NavBar() {
     return (
         <div>
             <Link to="/"> Home </Link>
-            <Link to="/view"> View All</Link>
-            <Link to="/edit"> Edit Posts</Link>
+            <Link to="/View"> View All</Link>
+            <Link to="/Edit"> Edit Posts</Link>
         </div>
     )
 }

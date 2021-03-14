@@ -22,10 +22,7 @@ export default function Home() {
         <input name="topic" placeholder="topic:" type="text" />
         {/* </label> */}
         <br></br>
-        {/* <label> Date:  */}
-        {/* <br></br> */}
-        {/* <input name="date" placeholder="date: " type="text" /> */}
-        {/* </label> */}
+
         <br></br>
         <input type="submit" value="submit"></input>
         {/* <label>Links<input name="links" type="text"/></label>*/}

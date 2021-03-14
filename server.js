@@ -9,9 +9,8 @@ const staticDir = path.resolve("./client/public");
 app.use(express.urlencoded({ extended: true }));
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/til");
-//time display var
-let timeDisplay = new Date();
-console.log(timeDisplay);
+
+
 
 //entry database, setting up schema for journal entries
 const entryDB = mongoose.connection;
@@ -19,6 +18,7 @@ const entrySchema = new mongoose.Schema({
   title: String,
   author: String,
   content: String,
+  date: String,
   topic: Array,
   // date: String,
 });
@@ -38,12 +38,12 @@ app.post("/writepost", async (req, res) => {
   let newPost = new entryModel({
     title: req.body.title,
     author: req.body.author,
-    // date: timeDisplay(),
+    date: new Date(),
     content: req.body.content,
     topics: [req.body.tags],
   });
   await newPost.save();
-  res.status(200).send("Successfulyy added");
+  res.status(200).sendFile(path.resolve(staticDir + "/index.html"));
 });
 
 //find
@@ -59,24 +59,36 @@ app.get("/api", async (req, res) => {
   res.json(results);
 });
 
-// //show entries
-// app.get('/view', allEntries)
 
-// //show one entry
-// app.get('/view/:id', async (req, res) => {
-// let id = req.params.id
-// let data = singleEntry(id)
-// res.send(data)
-// });
+
+//show one entry
+app.get('/view/:id', async (req, res) => {
+let id = req.params.id
+let data = await entryModel.findOne({_id:id})
+
+
+res.send(data)
+});
 
 //edit
-app.post("/view/:id", express.urlencoded(), (req, res) => {
-  let id = req.params.id;
-  let data = req.body;
-  updatePost(id, data);
-  res.redirect("/");
-});
-//
+// app.post(
+//   "/View/:id",
+//   express.urlencoded({ extended: true }),
+//   async (req, res) => {
+//     let id = req.params.id;
+//     let data = req.body;
+//     updatePost(id, data);
+//     res.redirect("/");
+//   }
+// );
+// //
+
+async function updatePost(id, update) {
+  let updateObj = {
+    $set: update,
+  };
+  await entryModel.updateOne({ _id: ObjectId(id) }, updateObj);
+}
 
 app.get("*", (req, res) => {
   res.sendFile(staticDir + "/index.html");

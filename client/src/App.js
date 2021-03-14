@@ -1,26 +1,26 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
 import View from "./components/View";
-import Edit from "./components/Edit"
+import Edit from "./components/Edit";
+import SinglePost from "./components/SinglePost";
 
 function App() {
-  console.log(Date.now())
+  console.log(Date.now());
   return (
     <div>
       {/* <h1 id="header"> TIL: </h1> */}
       <NavBar />
       <Switch>
         <Route exact path={"/"} component={Home} />
-        <Home>home page</Home>
+        <Route path={"/View/:singlePostID"} component={SinglePost} />
         <Route path={"/View"} component={View} />
-        <View />
-        <Route path={"/Edit"} component={Edit}/>
-        {/* <Route path={"/components/Facts"} component={} /> */}
-        {/* <Route path={""} component={} /> */}
+        {/* <Route path={"/writepost"}>
+          <Redirect to={"/View"}/>
+        </Route> */}
+        <Route path={"/Edit"} component={Edit} />
       </Switch>
-      
     </div>
   );
 }
