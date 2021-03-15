@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../App.css"
+import "../App.css";
 
 export default function View() {
   const [results, setResults] = useState([]);
@@ -30,13 +30,16 @@ export default function View() {
         : results.map((post, index) => {
             console.log(post);
             return (
-            <div id= "listings">
-            <Link id="links" to={`/View/${post._id}`}>Title : {post.title}</Link>
-
-             <div id="authors" key={index}>Author : {post.author}</div>
-          
-            </div>
-        )})}
+              <div id="listings">
+                <Link id="links" to={`/View/${post._id}`} style={{  color: "white" }} >
+                  Title : "{post.title}""
+                </Link>
+                <div id="authors" key={index}>
+                  Author : {post.author}
+                </div>
+              </div>
+            );
+          })}
     </div>
   );
 }

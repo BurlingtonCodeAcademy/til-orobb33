@@ -20,19 +20,19 @@ export default function SinglePost(props) {
     <div>
       {postInfo === null ? null : (
         <div>
-         
-          <form action={`/Edit/${postID}`} method="POST">
-            <input name="title" placeholder={postInfo.title} type="text" />
+         <h1 id="edit title">Edit: </h1>
+          <form id="editform"action={`/Edit/${postID}`} method="POST">
+            <input id="edit-title"name="title" placeholder={postInfo.title} type="text" />
 
-            <input name="author" placeholder={postInfo.author} type="text" />
+            <input id="edit-author"name="author" placeholder={postInfo.author} type="text" />
 
-            <textarea
+            <textarea id="edit-text"
               name="content"
               placeholder={postInfo.content}
               type="text"
             />
     
-            <input type="submit" value="submit"></input>
+            <input id="submit" type="submit" value="submit"></input>
           </form> 
          
 
@@ -40,10 +40,11 @@ export default function SinglePost(props) {
           <h1>Original Post:</h1>
           <h3>Title: {postInfo.title}</h3>
           <h3> Author: {postInfo.author}</h3>
-          <h3>Content: {postInfo.content}</h3> 
+          <h3>Content: {postInfo.content}</h3>
+          <h3>Date: {postInfo.date}</h3> 
 
-          
-          <Link id="delete" to={"/View/"}> <button onClick={() => fetch("/delete/" + postID)} >Delete</button> </Link>
+
+          <Link to={"/View/"}> <button id="delete" onClick={() => fetch("/delete/" + postID)}>Delete</button> </Link>
         </div>
       )}
     </div>
