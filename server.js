@@ -3,13 +3,13 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
-const staticDir = path.resolve("./client/public");
+// const staticDir = path.resolve("./client/public");
 app.use(express.urlencoded({ extended: true }));
 //mongoose stuff
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/til");
 const { ObjectId } = require('mongodb')
-
+const staticDir = path.resolve("./client/build");
 
 
 //entry database, setting up schema for journal entries
