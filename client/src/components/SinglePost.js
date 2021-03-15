@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+// import "../App.css"
 
 //brings you to single post
 //fetches data for that individual post
@@ -18,11 +20,8 @@ export default function SinglePost(props) {
     <div>
       {postInfo === null ? null : (
         <div>
-          {/* <div>Title: {postInfo.title}</div>
-          <div> Author: {postInfo.author}</div>
-          <div>Content: {postInfo.content}</div> 
-          */}
-          <form action={`/edit/${postID}`} method="POST">
+         
+          <form action={`/Edit/${postID}`} method="POST">
             <input name="title" placeholder={postInfo.title} type="text" />
 
             <input name="author" placeholder={postInfo.author} type="text" />
@@ -32,11 +31,19 @@ export default function SinglePost(props) {
               placeholder={postInfo.content}
               type="text"
             />
-            {/*        
-       <input name="topic" placeholder={postInfo.topic}  type="text" /> */}
-
+    
             <input type="submit" value="submit"></input>
-          </form>
+          </form> 
+         
+
+
+          <h1>Original Post:</h1>
+          <h3>Title: {postInfo.title}</h3>
+          <h3> Author: {postInfo.author}</h3>
+          <h3>Content: {postInfo.content}</h3> 
+
+          
+          <Link id="delete" to={"/View/"}> <button onClick={() => fetch("/delete/" + postID)} >Delete</button> </Link>
         </div>
       )}
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "../App.css"
 
 export default function View() {
   const [results, setResults] = useState([]);
@@ -20,7 +21,7 @@ export default function View() {
 
   console.log(results);
   return (
-    <div>
+    <div id="viewtext">
       <h1 id="viewHeader">View all posts</h1>
       {/* targeting results with .map -> guard clause  
       also creating divs on states created*/}
@@ -29,10 +30,10 @@ export default function View() {
         : results.map((post, index) => {
             console.log(post);
             return (
-            <div>
-            <Link to={`/View/${post._id}`}>{post.title}</Link>
+            <div id= "listings">
+            <Link id="links" to={`/View/${post._id}`}>Title : {post.title}</Link>
 
-             <div key={index}>{post.author}</div>
+             <div id="authors" key={index}>Author : {post.author}</div>
           
             </div>
         )})}

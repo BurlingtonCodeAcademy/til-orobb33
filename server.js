@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 //mongoose stuff
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/til");
+const { ObjectId } = require('mongodb')
 
 
 
@@ -39,10 +40,22 @@ app.post("/writepost", async (req, res) => {
   res.status(200).sendFile(path.resolve(staticDir + "/index.html"));
 });
 
+//edit
+app.post(
+  "/Edit/:id",
+  express.urlencoded({ extended: true }),
+  async (req, res) => {
+    let id = req.params.id;
+    let data = req.body;
+    await updatePost(id, data)
+    updatePost(id, data);
+    res.redirect("/");
+  }
+);
+
 //find
 app.get("/api", async (req, res) => {
   const cursor = await entryModel.find({});
-
   let results = [];
 
   await cursor.forEach((post) => {
@@ -57,22 +70,9 @@ app.get('/view/:id', async (req, res) => {
 let id = req.params.id
 let data = await entryModel.findOne({_id:id})
 
-
 res.send(data)
 });
 
-//edit
-app.post(
-  "/view/:id",
-  express.urlencoded({ extended: true }),
-  async (req, res) => {
-    let id = req.params.id;
-    let data = req.body;
-    updatePost(id, data);
-    res.redirect("/");
-  }
-);
-//
 
 async function updatePost(id, update) {
   let updateObj = {
@@ -80,6 +80,15 @@ async function updatePost(id, update) {
   };
   await entryModel.updateOne({ _id: ObjectId(id) }, updateObj);
 }
+
+
+//delete
+app.get("/delete/:id", async(req, res) => {
+let id = req.params.id
+console.log(id)
+await entryModel.findOneAndDelete({_id: id});
+})
+
 
 app.get("*", (req, res) => {
   res.sendFile(staticDir + "/index.html");
