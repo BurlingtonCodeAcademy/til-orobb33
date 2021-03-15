@@ -38,6 +38,7 @@ app.post("/writepost", async (req, res) => {
   });
   await newPost.save();
   res.status(200).sendFile(path.resolve(staticDir + "/index.html"));
+  res.redirect("/View")
 });
 
 //edit
