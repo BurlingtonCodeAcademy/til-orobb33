@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require("path");
-// const staticDir = path.resolve("./client/public");
+
 app.use(express.urlencoded({ extended: true }));
 //mongoose stuff
 const mongoose = require("mongoose");
@@ -20,7 +20,7 @@ const entrySchema = new mongoose.Schema({
   content: String,
   date: String,
   topic: Array,
-  // date: String,
+  
 });
 
 const entryModel = mongoose.model("entries", entrySchema);

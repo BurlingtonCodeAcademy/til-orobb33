@@ -9,17 +9,15 @@ import SinglePost from "./components/SinglePost";
 
 function App() {
 //routes to pages and navbar 
+//Browser Router lives in index.js
   return (
     <div>
-      {/* <h1 id="header"> TIL: </h1> */}
+      
       <NavBar />
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path={"/View/:singlePostID"} component={SinglePost} />
         <Route path={"/View"} component={View} />
-        {/* <Route path={"/writepost"}>
-          <Redirect to={"/View"}/>
-        </Route> */}
         <Route path={"/Edit"} component={Edit} />
       </Switch>
     </div>

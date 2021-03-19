@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import "../App.css"
+
 
 //brings you to single post
 //fetches data for that individual post
